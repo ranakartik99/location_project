@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+calculate distance
+{% endblock title %}
+
+{% block content %}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">distance to {{destination}} is :</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{distance}} km
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- after navbar -->
+<!-- As a link -->
+
+<div class="container">
+    <br>
+    <marquee behavior="alternate" style="background-color: rgba(0, 0, 0, 0.603) ; " direction="right">
+        <h1 style="color:whitesmoke;"> Location Based web-app project using django </h1>
+    </marquee>
+</div>
+
+
+
+
+<hr>
+
+<form action="" method="POST" autocomplete="on">{% csrf_token %}
+
+
+
+    <div class="form">
+
+        <large style="color: whitesmoke;" id="emailHelp" class="form-text text-white"> </small>
+            {{form}}
+           <!-- <input style="background-color:#343a40;" type="text" class="form-contro text-white"
+                placeholder="Enter destination"> -->
+
+
+            <button type="submit" style="border-radius: 16px; border-color: #5f6368; margin-left: 30px;"
+                class="btn btn-dark"><i class="em em-mag" aria-role="presentation"
+                    aria-label="LEFT-POINTING MAGNIFYING GLASS"></i>Search</button>
+    </div>
+</form>
+<hr>
+
+{{map| safe}}
+
+
+
+
+{% if request.POST and distance is not None %}
+<script>
+    $(window).on('load', function () {
+        $('#exampleModal').modal('show')
+    })
+</script>
+{% endif %}
+
+{% endblock content %}
